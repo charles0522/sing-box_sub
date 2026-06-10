@@ -1,0 +1,51 @@
+http://10.0.0.2:5000/config/https://d381dk2j9rs3wt.cloudfront.net/api/v1/client/subscribe?token=a4078039ec6195b8aaf621a63377ab54&file=1
+
+1.拉取源代码
+
+git clone https://github.com/charles0522/sing-box-subscribe.git
+
+2.项目命名并创建docker镜像
+
+mv sing-box-subscribe sing-box_sub && cd sing-box_sub && docker build -t sing-box_sub:latest .
+
+3.新建compose.yaml 文件
+
+内容如下
+
+services:
+  sing-box_sub:
+    image: sing-box_sub:latest
+    container_name: sing-box_sub
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./config_template:/sing-box_sub/config_template
+
+4.创建容器
+
+docker-compose up -d
+
+5.docker 常用命令
+
+查看容器：docker ps -a（显示所有，包括未运行的容器）
+
+启停容器：docker stop myapp / docker start myapp
+
+删除容器：docker rm -f myapp（-f 可强制删除运行中的容器）
+
+进入容器：docker exec -it myapp /bin/bash（推荐）或 /bin/sh
+
+查看日志：docker logs -f myapp（-f 表示持续追踪日志输出）
+
+查看容器详情：docker inspect myapp
+
+复制文件：docker cp /host/file.txt myapp:/container/path/
+
+6.momo插件订阅配置
+
+使用docker项目模板（数字为模板顺序从1开始）
+http://xxxx/config/订阅地址&file=1
+
+使用网络链接的模板
+http://xxxx/config/订阅地址&file=https://github.com/charles0522/sing-box-subscribe/blob/main/config_template/1_openwrt_momo_1.13.json
