@@ -15,13 +15,13 @@ vi compose.yaml
 
 services:
   sing-box_sub:
-    image: sing-box_sub:latest
-    container_name: sing-box_sub
-    restart: always
+    image: sing-box_sub:latest #docker容器镜像
+    container_name: sing-box_sub #容器名称
+    restart: always #重启策略开机启动
     ports:
-      - "5000:5000"
+      - "5000:5000" #映射端口
     volumes:
-      - ./config_template:/sing-box_sub/config_template
+      - ./config_template:/sing-box_sub/config_template #模板目录
 
 4.创建容器
 
