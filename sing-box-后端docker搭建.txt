@@ -9,6 +9,7 @@ git clone https://github.com/charles0522/sing-box_sub.git
 cd sing-box_sub && docker build -t sing-box_sub:latest .
 
 3.新建compose.yaml 文件
+vi compose.yaml
 
 内容如下
 
