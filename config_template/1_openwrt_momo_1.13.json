@@ -26,7 +26,7 @@
                 "server": "223.5.5.5"
             }, {
                 "tag": "public",
-                "type": "https",
+                "type": "h3",
                 "server": "dns.alidns.com",
                 "domain_resolver": "local"
             }, {
