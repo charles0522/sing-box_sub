@@ -2,7 +2,7 @@ http://10.0.0.2:5000/config/https://d381dk2j9rs3wt.cloudfront.net/api/v1/client/
 
 1.拉取源代码
 
-git clone https://github.com/charles0522/sing-box-sub.git
+git clone https://github.com/charles0522/sing-box_sub.git
 
 2.创建docker镜像
 
