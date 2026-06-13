@@ -34,9 +34,8 @@ echo "========= 4. 校验新容器是否启动成功 ========="
 echo "等待 5 秒以确保容器稳定运行..."
 sleep 5
 
-# 获取新启动容器的状态 (过滤条件根据你的 compose 服务名或容器名调整，这里继续用关键字过滤)
-# {{.State.Status}} 会直接输出 running, exited 等状态
-NEW_CONTAINER_STATUS=$(docker ps -a --filter "name=${CONTAINER_NAME}" --format "{{.State.Status}}" | head -n 1)
+# 使用 {{.State}} 获取纯文本状态（如 running, exited）
+NEW_CONTAINER_STATUS=$(docker ps -a --filter "name=${CONTAINER_NAME}" --format "{{.State}}" | head -n 1)
 
 if [ "$NEW_CONTAINER_STATUS" = "running" ]; then
     echo "✅ 校验成功：新容器当前状态为 [running]，已成功启动！"
@@ -45,6 +44,5 @@ else
     echo "========= 正在打印最后 20 行容器日志以供排查 ========="
     docker-compose logs --tail=20
     exit 1  # 显式抛出错误，终止脚本
-fi
 
 echo "========= 更新流程执行完毕！ ========="
