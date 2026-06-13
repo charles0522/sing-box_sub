@@ -2,11 +2,11 @@ http://10.0.0.2:5000/config/https://d381dk2j9rs3wt.cloudfront.net/api/v1/client/
 
 1.拉取源代码
 
-git clone https://github.com/charles0522/sing-box_sub.git
+git clone https://github.com/charles0522/sing-box-subscribe.git
 
 2.创建docker镜像
 
-cd sing-box_sub && docker build -t sing-box_sub:latest .
+cd sing-box-subscribe && docker build -t sing-box-subscribe:latest .
 
 3.新建compose.yaml 文件
 vi compose.yaml
@@ -14,14 +14,14 @@ vi compose.yaml
 内容如下
 
 services:
-  sing-box_sub:
-    image: sing-box_sub:latest #docker容器镜像
-    container_name: sing-box_sub #容器名称
+  sing-box-subscribe:
+    image: sing-box-subscribe:latest #docker容器镜像
+    container_name: sing-box-subscribe #容器名称
     restart: always #重启策略开机启动
     ports:
       - "5000:5000" #映射端口
     volumes:
-      - ./config_template:/sing-box_sub/config_template #模板目录
+      - ./config_template:/sing-box-subscribe/config_template #模板目录
 
 4.创建容器
 
