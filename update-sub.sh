@@ -16,7 +16,7 @@ CONTAINER_NAME="sing-box-subscribe"
 
 if [ -n "$CONTAINER_IDS" ]; then
     echo "发现正在运行或残留的容器，正在删除..."
-docker ps -a | grep "$CONTAINER_NAME" | awk '{print $1}' | xargs -r docker rm -f
+docker ps -a | grep "$CONTAINER_NAME" | awk '{print $1}' | xargs  docker rm -f
     echo "旧容器清理完毕。"
 else
     echo "未发现相关的旧容器，跳过清理步骤。"
