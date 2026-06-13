@@ -1,1 +1,9 @@
-
+services:
+  sing-box-subscribe:
+    image: sing-box-subscribe:latest #docker容器镜像
+    container_name: sing-box-subscribe #容器名称
+    restart: always #重启策略开机启动
+    ports:
+      - "5000:5000" #映射端口
+    volumes:
+      - ./config_template:/sing-box-subscribe/config_template #模板目录
