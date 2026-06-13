@@ -1,5 +1,3 @@
-http://10.0.0.2:5000/config/https://d381dk2j9rs3wt.cloudfront.net/api/v1/client/subscribe?token=a4078039ec6195b8aaf621a63377ab54&file=1
-
 1.拉取源代码
 
 git clone https://github.com/charles0522/sing-box-subscribe.git
