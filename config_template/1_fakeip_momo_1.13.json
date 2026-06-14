@@ -7,11 +7,12 @@
     "experimental": {
         "cache_file": {
             "enabled": true,
+            "path": "/etc/momo/run/cache.db",
             "store_fakeip": true
         },
         "clash_api": {
-            "external_controller": "0.0.0.0:9090",
-            "external_ui": "ui",
+            "external_controller": "0.0.0.0:9095",
+            "external_ui": "/etc/momo/run/ui",
             "external_ui_download_url": "https://gh-proxy.com/https://github.com/Zephyruso/zashboard/archive/refs/heads/gh-pages.zip",
             "external_ui_download_detour": "direct",
             "secret": "",
@@ -25,7 +26,7 @@
                 "server": "223.5.5.5"
             }, {
                 "tag": "public",
-                "type": "https",
+                "type": "h3",
                 "server": "dns.alidns.com",
                 "domain_resolver": "local"
             }, {
@@ -45,20 +46,20 @@
                 "server": "local"
             }, {
                 "clash_mode": "global",
-                "server": "fakeip"
+                "server": "remote"
             }, {
                 "query_type": "HTTPS",
                 "action": "reject"
             }, {
                 "rule_set": "geosite-fakeipfilter",
                 "server": "local"
-            }, {
+            },{
+                "rule_set": "geosite-cn",
+                "server": "local"
+            },{
                 "query_type": ["A", "AAAA"],
                 "server": "fakeip",
                 "rewrite_ttl": 1
-            }, {
-                "rule_set": "geosite-cn",
-                "server": "local"
             }
         ],
         "final": "remote",
@@ -67,19 +68,39 @@
         "independent_cache": true,
         "reverse_mapping": true
     },
-    "inbounds": [
-		{
-			"tag": "tun-in",
-			"type": "tun",
-			"address": [
-				"172.19.0.0/30",
-				"fdfe:dcba:9876::0/126"
-			],
-			"auto_route": true,
-			"stack": "system",
-			"sniff": true,
-			"sniff_override_destination": true
-		}
+    "inbounds": [{
+            "tag": "dns-in",
+            "type": "direct",
+            "listen": "::",
+            "listen_port": 1053
+        }, {
+            "tag": "http-in",
+            "type": "http",
+            "listen": "::",
+            "listen_port": 8080
+        }, {
+            "tag": "socks-in",
+            "type": "socks",
+            "listen": "::",
+            "listen_port": 1080
+        }, {
+            "tag": "redirect-in",
+            "type": "redirect",
+            "listen": "::",
+            "listen_port": 7890
+        }, {
+            "tag": "tproxy-in",
+            "type": "tproxy",
+            "listen": "::",
+            "listen_port": 7891
+        }, {
+            "tag": "tun-in",
+            "type": "tun",
+            "interface_name": "momo",
+            "address": ["172.31.0.1/30", "fdfe:dcba:9876::1/126"],
+            "auto_route": false,
+            "auto_redirect": false
+        }
     ],
     "route": {
         "rules": [{
