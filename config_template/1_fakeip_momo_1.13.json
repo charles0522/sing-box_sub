@@ -103,7 +103,6 @@
             "auto_redirect": false,
 			"endpoint_independent_nat": true
         }
-    },
     ],
     "route": {
         "rules": [{
